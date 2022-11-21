@@ -5,10 +5,20 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    private Transform cameraPoint;
+    private Vector3 _different;
+    private Vector3 _moveDir;
+    private Vector3 _destination;
+    [SerializeField]
+    private Transform _player;
 
-    void FixedUpdate()
+    void Update()
     {
-        transform.position = cameraPoint.position;
+        transform.position = Vector3.Lerp(transform.position, _destination, Time.deltaTime * 3f);
+    }
+
+    public void SetDestination(Vector3 moveDir)
+    {
+        _moveDir = moveDir;
+        _destination = _moveDir + _player.position + _different;
     }
 }
