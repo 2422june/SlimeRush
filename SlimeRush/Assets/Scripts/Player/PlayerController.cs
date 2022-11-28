@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 _moveDir;
     [SerializeField]
     private CameraController _cameraController;
+    private PlayerStateUIController _playerUI;
 
     void Start()
     {
         _moveSpeed = 5f;
 
+        _playerUI = GetComponent<PlayerStateUIController>();
         _cameraController = Camera.main.GetComponent<CameraController>();
     }
 
