@@ -25,12 +25,12 @@ public class PlayerStateUIController : MonoBehaviour
         _level = 0;
     }
 
-    public void SetHpMax(out int hp)
+    public void SetHpMax(int hp)
     {
         hp = _maxHp;
     }
 
-    public void SetExpMax(out int exp)
+    public void SetExpMax(int exp)
     {
         exp = _maxExp;
     }

@@ -20,16 +20,16 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        _moveSpeed = 5f;
-
         _playerUI = GetComponent<PlayerStateUIController>();
         _cameraController = Camera.main.GetComponent<CameraController>();
+
+        _moveSpeed = 5f;
 
         _exp = 0;
         _hp = 100;
 
-        _playerUI.SetExpMax(out _maxExp);
-        _playerUI.SetHpMax(out _maxHp);
+        _playerUI.SetExpMax(_maxExp);
+        _playerUI.SetHpMax(_maxHp);
     }
 
     void Update()
@@ -37,12 +37,21 @@ public class PlayerController : MonoBehaviour
         _h = Input.GetAxisRaw("Horizontal");
         _v = Input.GetAxisRaw("Vertical");
 
+        Move();
+        Rotate();
+    }
+
+    void Move()
+    {
         _moveDir.x = _h;
         _moveDir.z = _v;
 
-        _cameraController.SetDestination(_moveDir);
+        transform.position += _moveDir.normalized * _moveSpeed * Time.deltaTime;
+    }
 
-        transform.position += _moveDir * _moveSpeed * Time.deltaTime;
+    void Rotate()
+    {
+        _cameraController.SetDestination(_moveDir);
         transform.LookAt(transform.position + _moveDir);
     }
 

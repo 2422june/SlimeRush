@@ -7,7 +7,7 @@ public class Follow : MonoBehaviour
     [SerializeField]
     private Transform _followTarget;
 
-    void Update()
+    void LateUpdate()
     {
         transform.position = _followTarget.position;
     }
