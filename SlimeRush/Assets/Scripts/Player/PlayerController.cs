@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _playerUI = GetComponent<PlayerStateUIController>();
-        _cameraController = Camera.main.GetComponent<CameraController>();
+        _cameraController = GameObject.FindObjectOfType<CameraController>();
 
         _moveSpeed = 5f;
 

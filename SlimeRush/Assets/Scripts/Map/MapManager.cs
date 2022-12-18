@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    private Transform _mapParent;
     [SerializeField]
     private List<Transform> _mapTiles;
 
     private void Awake()
     {
-        _mapParent = GameObject.Find("Grounds").transform;
+        for(int i = 1; i <= 25; i++)
+        {
+            _mapTiles.Add(transform.Find($"Ground{i}"));
+        }
     }
 }
