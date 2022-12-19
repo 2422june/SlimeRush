@@ -24,6 +24,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        _awake.Invoke();
+        //_awake.Invoke();
     }
 }
