@@ -1997,8 +1997,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: EXPObj (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1108432820, guid: 8f226a393243a0141bace5fd6b60bafa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8f226a393243a0141bace5fd6b60bafa, type: 3}
+--- !u!1 &990047467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2218249172262814866, guid: 8f226a393243a0141bace5fd6b60bafa, type: 3}
+  m_PrefabInstance: {fileID: 990047466}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &990047468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990047467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7244776997883e44bd1781da8cefb42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 3
 --- !u!1 &1026309161
 GameObject:
   m_ObjectHideFlags: 0
@@ -3131,8 +3150,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: EXPObj
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1108432820, guid: 8f226a393243a0141bace5fd6b60bafa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8f226a393243a0141bace5fd6b60bafa, type: 3}
+--- !u!1 &1491961049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2218249172262814866, guid: 8f226a393243a0141bace5fd6b60bafa, type: 3}
+  m_PrefabInstance: {fileID: 1491961048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1491961050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491961049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7244776997883e44bd1781da8cefb42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 1
 --- !u!1 &1493375089
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,8 +3298,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: EXPObj (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1108432820, guid: 8f226a393243a0141bace5fd6b60bafa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8f226a393243a0141bace5fd6b60bafa, type: 3}
+--- !u!1 &1611320239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2218249172262814866, guid: 8f226a393243a0141bace5fd6b60bafa, type: 3}
+  m_PrefabInstance: {fileID: 1611320238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1611320240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611320239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7244776997883e44bd1781da8cefb42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 2
 --- !u!1 &1654272253
 GameObject:
   m_ObjectHideFlags: 0
