@@ -2,77 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : RootPlayerClasses
 {
-    private float _h, _v;
-    private float _moveSpeed;
-    private float _rotateSpeed;
-    private Vector3 _moveDir;
-
-    private int _exp;
-    private int _hp;
-    private int _maxHp;
-    private int _maxExp;
-
-    [SerializeField]
-    private CameraController _cameraController;
-    private PlayerStateUIController _playerUI;
-
-    void Start()
+    public override void Init()
     {
-        _playerUI = GetComponent<PlayerStateUIController>();
-        _cameraController = GameObject.FindObjectOfType<CameraController>();
-
-        _moveSpeed = 5f;
+        _level = 1;
+        _maxExp = _maxExps[_level];
+        _maxHp = 100;
 
         _exp = 0;
         _hp = 100;
+        Debug.Log("Player");
+    }
 
-        _playerUI.SetExpMax(_maxExp);
-        _playerUI.SetHpMax(_maxHp);
+    void SetClass<T>(ref T _class) where T : RootPlayerClasses
+    {
+        _class = GetComponent<T>();
+        if(_class == null)
+        {
+            _class = gameObject.AddComponent<T>();
+        }
+        _class.Init();
+    }
+
+    void Awake()
+    {
+        SetClass<PlayerController>(ref _player);
+        SetClass<PlayerMoveController>(ref _moveController);
+        SetClass<PlayerUIController>(ref _uiController);
     }
 
     void Update()
     {
-        _h = Input.GetAxisRaw("Horizontal");
-        _v = Input.GetAxisRaw("Vertical");
-
-        Move();
-        Rotate();
-    }
-
-    void Move()
-    {
-        _moveDir.x = _h;
-        _moveDir.z = _v;
-
-        transform.position += _moveDir.normalized * _moveSpeed * Time.deltaTime;
-    }
-
-    void Rotate()
-    {
-        _cameraController.SetDestination(_moveDir);
-        transform.LookAt(transform.position + _moveDir);
+        _moveController.Move();
     }
 
     void LevelUp()
     {
-        _exp = 0;
-        _playerUI.LevelUp();
+        while(_exp >= _maxExp)
+        {
+            _exp -= _maxExp;
+            _level++;
+            Debug.Log("level : "+_level);
+            _uiController.LevelUp();
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("EXP"))
         {
-            other.gameObject.SetActive(false);
+            _exp += other.GetComponent<ExpController>().Contact();
 
-            _exp += 10;
-            if(_exp >= _maxExp)
-            {
-                LevelUp();
-            }
-            _playerUI.SetEXP(_exp);
+            LevelUp();
+            _uiController.SetEXP();
         }
 
         if (other.CompareTag("HP"))
@@ -84,7 +67,7 @@ public class PlayerController : MonoBehaviour
             {
                 _hp = _maxHp;
             }
-            _playerUI.SetHP(_hp);
+            _uiController.SetHP();
         }
     }
 }

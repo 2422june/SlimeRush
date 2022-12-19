@@ -7,53 +7,59 @@ public class JoystickController : MonoBehaviour
     [SerializeField]
     private Transform _base, _stick;
     private Vector3 _dir, _mousePosition;
-    private bool _isClick;
     private float _swipeRange;
 
     void Start()
     {
-        _swipeRange = 100;
-        _isClick = false;
         _base = transform.Find("Joystick");
         _stick = _base.Find("Stick");
-        ShowJoyskick(false);
+
+        _swipeRange = 100;
+        SetJoyskick(false);
     }
 
-    void ShowJoyskick(bool active)
+    void SetJoyskick(bool active)
     {
         _base.gameObject.SetActive(active);
+        _stick.position = _base.position;
+    }
+
+    void RestrictSwipeRange()
+    {
+        if (Vector3.Distance(_mousePosition, _base.position) >= _swipeRange)
+        {
+            Vector3 betterSwipePos = (_mousePosition - _base.position).normalized * _swipeRange;
+            _mousePosition = _base.position + betterSwipePos;
+        }
     }
 
     void Update()
     {
-        if (_isClick)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButton(0))
-            {
-                _mousePosition = Input.mousePosition;
-                if(Vector3.Distance(_mousePosition, _base.position) >= _swipeRange)
-                {
-                    _mousePosition = _base.position + (_mousePosition - _base.position).normalized * _swipeRange;
-                }
-                _stick.position = _mousePosition;
-                _dir = _stick.localPosition.normalized;
-                Debug.Log(_dir);
-            }
-            else
-            {
-                _stick.position = _base.position;
-                _isClick = false;
-                ShowJoyskick(false);
-            }
+            _base.position = Input.mousePosition;
+            SetJoyskick(true);
         }
-        else
+
+        if (Input.GetMouseButton(0))
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                ShowJoyskick(true);
-                _base.position = Input.mousePosition;
-                _isClick = true;
-            }
+            _mousePosition = Input.mousePosition;
+
+            RestrictSwipeRange();
+            _stick.position = _mousePosition;
+            
+            _dir = _stick.localPosition.normalized;
         }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            SetJoyskick(false);
+            _dir = Vector3.zero;
+        }
+    }
+
+    public Vector3 GetJoystickDir()
+    {
+        return (Vector3.right * _dir.x) + (Vector3.forward * _dir.y);
     }
 }

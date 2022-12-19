@@ -12,9 +12,11 @@ public class CameraController : MonoBehaviour
     private Vector3 _destination;   ///Camera's destination
 
     private Transform _player;      ///The player transform
+    private JoystickController _joystick;
 
     void Awake()
     {
+        _joystick = FindObjectOfType<JoystickController>();
         _player = GameObject.Find("Player").transform;
 
         _difference.y = 6;
@@ -26,14 +28,15 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        _moveDir = _joystick.GetJoystickDir();
+        SetDestination();
+
         /// move to the destination smoothly
         transform.position = Vector3.Lerp(transform.position, _destination, Time.deltaTime * 3f);
     }
 
-    public void SetDestination(Vector3 moveDir)
+    public void SetDestination()
     {
-        /// get player movement direction
-        _moveDir = moveDir;
         _destination = _player.position + _moveDir + _difference;
     }
 }
