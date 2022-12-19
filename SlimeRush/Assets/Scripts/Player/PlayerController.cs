@@ -12,7 +12,6 @@ public class PlayerController : RootPlayerClasses
 
         _exp = 0;
         _hp = 100;
-        Debug.Log("Player");
     }
 
     void SetClass<T>(ref T _class) where T : RootPlayerClasses
@@ -37,24 +36,11 @@ public class PlayerController : RootPlayerClasses
         _moveController.Move();
     }
 
-    void LevelUp()
-    {
-        while(_exp >= _maxExp)
-        {
-            _exp -= _maxExp;
-            _level++;
-            Debug.Log("level : "+_level);
-            _uiController.LevelUp();
-        }
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("EXP"))
         {
             _exp += other.GetComponent<ExpController>().Contact();
-
-            LevelUp();
             _uiController.SetEXP();
         }
 

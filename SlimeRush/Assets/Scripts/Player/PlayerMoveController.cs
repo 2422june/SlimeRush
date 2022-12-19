@@ -10,8 +10,6 @@ public class PlayerMoveController : RootPlayerClasses
     {
         _joystick = FindObjectOfType<JoystickController>();
         _moveSpeed = 5f;
-
-        Debug.Log("move");
     }
 
     public void Move()

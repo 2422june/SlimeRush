@@ -23,8 +23,6 @@ public class PlayerUIController : RootPlayerClasses
         SetFirstValue(_maxExp, _maxHp);
 
         _isGetExp = false;
-
-        Debug.Log("ui");
     }
 
     public void SetFirstValue(int maxHp, int maxExp)
@@ -50,14 +48,17 @@ public class PlayerUIController : RootPlayerClasses
 
     public void LevelUp()
     {
-        _expBar.maxValue = _maxExps[_level];
+        _level++;
+        _expBar.value = 0;
+        _exp -= _maxExp;
+        SetExpMax(_maxExps[_level]);
         SetEXP();
     }
 
     public void SetEXP()
     {
         _isGetExp = true;
-        _expAddSpeed = (_exp - _expBar.value);
+        _expAddSpeed = (_exp - _expBar.value) * 5;
     }
 
     void Update()
@@ -67,6 +68,11 @@ public class PlayerUIController : RootPlayerClasses
             if (_expBar.value < _exp)
             {
                 _expBar.value += _expAddSpeed * Time.deltaTime;
+
+                if(_expBar.value >= _maxExp)
+                {
+                    LevelUp();
+                }
             }
             else
             {
