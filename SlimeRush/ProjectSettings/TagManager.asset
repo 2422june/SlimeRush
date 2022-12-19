@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EXP
   - HP
+  - Enemy
   layers:
   - Default
   - TransparentFX

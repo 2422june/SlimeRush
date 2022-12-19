@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class JoystickController : MonoBehaviour
 {
@@ -8,12 +9,14 @@ public class JoystickController : MonoBehaviour
     private Transform _base, _stick;
     private Vector3 _dir, _mousePosition;
     private float _swipeRange;
+    private bool _isShow;
 
     void Start()
     {
         _base = transform.Find("Joystick");
         _stick = _base.Find("Stick");
 
+        _isShow = false;
         _swipeRange = 100;
         SetJoyskick(false);
     }
@@ -35,11 +38,15 @@ public class JoystickController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             _base.position = Input.mousePosition;
             SetJoyskick(true);
+            _isShow = true;
         }
+
+        if (!_isShow)
+            return;
 
         if (Input.GetMouseButton(0))
         {
@@ -55,6 +62,7 @@ public class JoystickController : MonoBehaviour
         {
             SetJoyskick(false);
             _dir = Vector3.zero;
+            _isShow = false;
         }
     }
 

@@ -14,6 +14,7 @@ public class RootPlayerClasses : MonoBehaviour
     protected static int _maxExp;
     protected static int _exp;
     protected static int _hp;
+    protected static int _damage;
 
     protected static float _moveSpeed;
     protected static Vector3 _moveDir;

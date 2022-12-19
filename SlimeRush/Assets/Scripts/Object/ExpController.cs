@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ExpController : MonoBehaviour
 {
+
     [SerializeField]
     private byte _type;
 
