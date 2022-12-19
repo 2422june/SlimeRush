@@ -68,13 +68,18 @@ public class PlayerController : RootPlayerClasses
         if (_isGetDamage)
             return;
 
+        ExplosionManager.inst.ShowExplosion(transform.position);
         _isGetDamage = true;
         _protectController.ShowProtecter();
 
         _hp -= damage;
-        if (_hp < 0)
+        if (_hp <= 0)
         {
             _hp = 0;
+
+            gameObject.SetActive(false);
+            _moveSpeed = 0;
+            _uiController.ShowEnd();
         }
         _uiController.SetHP();
     }

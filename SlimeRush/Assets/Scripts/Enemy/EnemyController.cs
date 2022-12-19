@@ -25,6 +25,7 @@ public class EnemyController : MonoBehaviour
 
     public void Hit(int damage, Transform point)
     {
+        ExplosionManager.inst.ShowExplosion(transform.position);
         _hp -= damage;
         if(_hp <= 0)
         {
