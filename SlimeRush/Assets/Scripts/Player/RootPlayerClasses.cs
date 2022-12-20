@@ -9,7 +9,7 @@ public class RootPlayerClasses : MonoBehaviour
     protected static PlayerMoveController _moveController;
 
     protected static int _level;
-    protected static int[] _maxExps = { 0, 50, 100, 150, 200 };
+    protected static int[] _maxExps = { 0, 150, 200, 250, 300 };
     protected static int _maxHp;
     protected static int _maxExp;
     protected static int _exp;

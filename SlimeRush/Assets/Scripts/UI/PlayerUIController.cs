@@ -19,17 +19,20 @@ public class PlayerUIController : RootPlayerClasses
     private bool _isGetExp;
     private float _expAddSpeed;
 
+    private SkillController skill;
+
     public override void Init()
     {
         canvas = GameObject.Find("PlayerCanvas").transform;
         ScreenCanvas = GameObject.Find("ScreenCanvas").transform;
         skillSelectPanel = ScreenCanvas.Find("SkillSelectPanel");
         endPanel = ScreenCanvas.Find("GameOverPanel");
+        skill = GetComponent<SkillController>();
 
         _expBar = canvas.Find("EXP").GetComponent<Slider>();
         _hpBar = canvas.Find("HP").GetComponent<Slider>();
 
-        SetFirstValue(_maxExp, _maxHp);
+        SetFirstValue(_maxHp, _maxExp);
 
         _isGetExp = false;
     }
@@ -38,6 +41,7 @@ public class PlayerUIController : RootPlayerClasses
     {
         skillSelectPanel.gameObject.SetActive(true);
         Time.timeScale = 0;
+        skill.NewSkill();
     }
     public void ShowEnd()
     {

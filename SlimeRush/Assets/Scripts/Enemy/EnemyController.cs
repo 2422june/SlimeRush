@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        _player = GameObject.Find("Player").transform;
         _nav = GetComponent<NavMeshAgent>();
         _damage = 10;
         _hp = 10;
@@ -23,8 +24,10 @@ public class EnemyController : MonoBehaviour
         _nav.SetDestination(_player.position);
     }
 
-    public void Hit(int damage, Transform point)
+    public void Hit(int damage)
     {
+
+        AudioManager.inst.PlayEff(0);
         ExplosionManager.inst.ShowExplosion(transform.position);
         _hp -= damage;
         if(_hp <= 0)

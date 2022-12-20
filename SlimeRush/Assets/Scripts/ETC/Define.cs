@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class Define : MonoBehaviour
 {
-    public static int[] resultExps = {0, 10, 50, 100};
+    public static int[] resultExps = {0, 10, 25, 40};
+
+    public enum Eff
+    {
+        boom, click
+    }
 }

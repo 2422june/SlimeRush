@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : RootPlayerClasses
 {
+    public Vector3 _fireDir;
+
     private bool _isGetDamage;
     private float _invincibilityTime;
     private float _invincibilityTimer;
@@ -47,6 +49,19 @@ public class PlayerController : RootPlayerClasses
         _moveController.Move();
 
         Invincibility();
+
+        if (_moveDir != Vector3.zero)
+            _fireDir = _moveDir;
+    }
+
+    public Vector3 GetFireDir()
+    {
+        return _fireDir;
+    }
+
+    public int GetDamage()
+    {
+        return _damage;
     }
 
     void Invincibility()
@@ -68,6 +83,7 @@ public class PlayerController : RootPlayerClasses
         if (_isGetDamage)
             return;
 
+        AudioManager.inst.PlayEff(0);
         ExplosionManager.inst.ShowExplosion(transform.position);
         _isGetDamage = true;
         _protectController.ShowProtecter();
@@ -93,7 +109,7 @@ public class PlayerController : RootPlayerClasses
                     EnemyController enemy = collision.transform.GetComponent<EnemyController>();
 
                     Hit(enemy.GetDamage());
-                    enemy.Hit(_damage, transform);
+                    enemy.Hit(_damage);
 
                     break;
                 }
@@ -108,6 +124,7 @@ public class PlayerController : RootPlayerClasses
                 {
                     _exp += other.GetComponent<ExpController>().Contact();
                     _uiController.SetEXP();
+                    AudioManager.inst.PlayEff(2);
                     break;
                 }
 

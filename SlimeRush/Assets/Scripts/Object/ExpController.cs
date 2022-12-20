@@ -6,11 +6,12 @@ public class ExpController : MonoBehaviour
 {
 
     [SerializeField]
-    private byte _type;
+    public byte _type;
 
     public int Contact()
     {
         gameObject.SetActive(false);
+        Destroy(gameObject, 1f);
         return Define.resultExps[_type];
     }
 }
